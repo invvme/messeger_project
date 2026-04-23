@@ -3,9 +3,45 @@
 {% block content %}
 <h1>Чат</h1>
 
-<form>
-    <input placeholder="Сообщение">
-    <button>Отправить</button>
-</form>
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <h2>Чаты</h2>
+        {% for item in chats %}
+            <div class="border rounded p-3 mb-3 {% if item.id == chat.id %}bg-light{% else %}bg-white{% endif %}">
+                {% for user in item.users %}
+                    {% if user.id != current_user.id %}
+                        <div class="mb-2">{{ user.username }}</div>
+                    {% endif %}
+                {% endfor %}
+                <a href="{{ url_for('main.chat', chat_id=item.id) }}" class="btn btn-outline-secondary btn-sm">
+                    Открыть
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-md-8">
+        <div class="border rounded p-3 bg-white">
+            <div class="messages-block mb-3">
+                {% for item in chat.messages %}
+                    <div class="message-item mb-3">
+                        <div><strong>{{ item.user.username }}</strong></div>
+                        <div>{{ item.text }}</div>
+                        <div class="message-date">{{ item.timestamp.strftime('%d.%m.%Y %H:%M') }}</div>
+                    </div>
+                {% else %}
+                    <div class="text-muted">Сообщений пока нет.</div>
+                {% endfor %}
+            </div>
+
+            <form action="" method="post">
+                <div class="mb-3">
+                    <input class="form-control" name="text" placeholder="Введите сообщение">
+                </div>
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
