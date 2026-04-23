@@ -15,17 +15,11 @@ def register():
     if request.method == 'POST':
         username = request.form.get('username', '').strip()
         password = request.form.get('password', '')
-        password_again = request.form.get('password_again', '')
 
         if not username or not password:
             return render_template('register.html',
                                    title='Регистрация',
                                    message='Заполните все обязательные поля')
-
-        if password != password_again:
-            return render_template('register.html',
-                                   title='Регистрация',
-                                   message='Пароли не совпадают')
 
         if db.session.query(User).filter(User.username == username).first():
             return render_template('register.html',
