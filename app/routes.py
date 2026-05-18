@@ -61,7 +61,7 @@ def chat(chat_id):
 
         text = request.form.get('text', '').strip()
         if not text:
-            return
+            return redirect(url_for('main.chat', chat_id=chat.id))
 
         if text.lower().startswith("покажи на карте "):
             address = text[len("покажи на карте "):].strip()
