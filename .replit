@@ -1,0 +1,5 @@
+entrypoint = "run.py"
+run = "python3 run.py"
+
+[deployment]
+run = "gunicorn --bind 0.0.0.0:$PORT run:app"
