@@ -18,10 +18,7 @@ def create_app():
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'yandexlyceum_secret_key')
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-        'DATABASE_URL',
-        'sqlite:///' + os.path.join(app.instance_path, 'db.sqlite3')
-    )
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.instance_path, 'db.sqlite3')
     app.config['DEBUG'] = os.getenv('DEBUG') == 'True'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
