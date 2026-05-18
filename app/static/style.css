@@ -1,34 +1,104 @@
+:root {
+  --green-dark: #244626;
+  --green-main: #9bdc9f;
+  --green-light-bg: #f2f7f2;
+  --orange-accent: #ff6716;
+  --orange-hover: #ab2b05;
+}
+
 body {
-   background-color: #f5f5f5;
+  background-color: var(--green-light-bg);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
 h1,
 h2 {
-   margin-bottom: 20px;
+  color: var(--green-dark);
+  margin-bottom: 20px;
+}
+
+.navbar {
+  border-bottom: 2px solid var(--orange-accent) !important;
+}
+.navbar-brand {
+  font-weight: 600;
+  color: var(--green-dark) !important;
+}
+
+/*КНОПКИ*/
+
+.btn {
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--green-main);
+  border-color: var(--green-main);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #2e7d32;
+  border-color: #2e7d32;
+}
+
+.btn-outline-primary {
+  color: var(--green-main);
+  border-color: var(--green-main);
+}
+.btn-outline-primary:hover {
+  background-color: var(--green-main);
+  border-color: var(--green-main);
+  color: #fff;
+}
+
+.btn-accent {
+  background-color: var(--orange-accent);
+  border-color: var(--orange-accent);
+  color: #fff;
+}
+.btn-accent:hover,
+.btn-accent:focus {
+  background-color: var(--orange-hover);
+  border-color: var(--orange-hover);
+  color: #fff;
 }
 
 form.login_form {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 500px;
-    background-color: #ffffff;
-    border: 1px solid #d8d8d8;
-    border-radius: 5px;
-    padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+  background-color: #ffffff;
+  border: 1px solid #c8e6c9;
+  border-radius: 0.75rem;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .messages-block {
-    max-height: 420px;
-    overflow-y: auto;
+  max-height: 420px;
+  overflow-y: auto;
+  background-color: #ffffff;
+  border: 1px solid #c8e6c9;
+  border-radius: 0.5rem;
+  padding: 15px;
 }
 
 .message-item {
-    padding: 12px;
-    border-radius: 5px;
-    background-color: #f8f9fa;
+  padding: 12px 16px;
+  border-radius: 0.5rem;
+  background-color: #e8f5e9;
+  border-left: 4px solid var(--green-main);
+  margin-bottom: 12px;
 }
 
 .message-date {
-    color: #6c757d;
+    color: #49614f;
     font-size: 12px;
+}
+
+.alert-warning {
+  background-color: #fff3e0;
+  border-color: var(--orange-accent);
+  color: var(--orange-accent);
 }
