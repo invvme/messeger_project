@@ -3,9 +3,56 @@
 {% block content %}
 <h1>Чат</h1>
 
-<form>
-    <input placeholder="Сообщение">
-    <button>Отправить</button>
-</form>
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <h2>Чаты</h2>
+        {% for item in chats %}
+            <div class="border rounded p-3 mb-3 {% if item.id == chat.id %}bg-light{% else %}bg-white{% endif %}">
+                {% for user in item.users %}
+                    {% if user.id != current_user.id %}
+                        <div class="mb-2">{{ user.display_name or user.username }}</div>
+                    {% endif %}
+                {% endfor %}
+                <a href="{{ url_for('main.chat', chat_id=item.id) }}" class="btn btn-outline-secondary btn-sm">
+                    Открыть
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-md-8">
+        <div class="border rounded p-3 bg-white">
+            <div class="messages-block mb-3">
+                {% for item in chat.messages %}
+                    <div class="d-flex align-items-start message-item mb-3">
+                        <img src="{{ url_for('static', filename='uploads/avatars/' + item.user.avatar) }}"
+                            alt="avatar" class="rounded-circle me-3 flex-shrink-0"
+                            width="40" height="40"
+                            style="object-fit: cover; border: 2px solid var(--green-main);">
+                        
+                        <div>
+                            <div><strong>{{ item.user.display_name or item.user.username }}</strong></div>
+                            <div>{{ item.text }}</div>
+                            {% if item.image %}
+                                <img src="{{ url_for('static', filename=item.image) }}"
+                                    class="img-fluid rounded mt-2">
+                            {% endif %}
+                            <div class="message-date">{{ item.timestamp.strftime('%d.%m.%Y %H:%M') }}</div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="text-muted">Сообщений пока нет.</div>
+                {% endfor %}
+            </div>
+
+            <form action="" method="post">
+                <div class="mb-3">
+                    <input class="form-control" name="text" placeholder="Введите сообщение">
+                </div>
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
